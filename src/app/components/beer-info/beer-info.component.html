@@ -1,0 +1,40 @@
+@if (beer()) {
+  <div class="beer-detail-container">
+    <h1 class="beer-name">{{ beer()?.name }}</h1>
+
+    <div class="beer-main-content">
+      <div class="beer-description-photo">
+        @if (isImageLoading()) {
+          <p-progressSpinner styleClass="custom-spinner"></p-progressSpinner>
+        }
+        <img
+          class="beer-image"
+          [src]="imageUrl()"
+          alt="{{ beer()?.name }}"
+          (load)="handleImageLoad()"
+          [hidden]="isImageLoading()"
+        />
+        <p class="beer-description">{{ beer()?.description }}</p>
+      </div>
+
+      <div class="beer-details">
+        <p><strong>Tagline:</strong> {{ beer()?.tagline }}</p>
+        <p><strong>First Brewed:</strong> {{ beer()?.first_brewed }}</p>
+        <p><strong>ABV:</strong> {{ beer()?.abv }}%</p>
+        <p><strong>IBU:</strong> {{ beer()?.ibu }}</p>
+        <p><strong>PH:</strong> {{ beer()?.ph }}</p>
+        <p><strong>Brewer's Tips:</strong> {{ beer()?.brewers_tips }}</p>
+
+        @if (beer()?.food_pairing?.length) {
+          <p><strong>Food Pairing:</strong></p>
+          <ul>
+            @for (food of beer()!.food_pairing; track $index) {
+              <li>{{ food }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+    @if (infoButton()) {<p-button class="info-btn" (onClick)="handleClick()" [label]="infoButton()"></p-button>}
+  </div>
+}
