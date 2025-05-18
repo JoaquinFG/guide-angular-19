@@ -19,18 +19,7 @@ export class BeerRandomComponent {
 
   infoButton = 'Generate'
     
-  readonly randomBeer = toSignal(this._beerService.getRandomBeer(), { initialValue: undefined });
-  readonly beerImage = computed(() =>
-    this.randomBeer()?.image
-  ? `https://punkapi.online/v3/images/${this.randomBeer()?.image}`
-  : undefined
-  );
-  
-  handleBeerClick(){
-    ///////////////////Ejercicio Nº1
-  }
-  
-  /* readonly randomBeer = signal<Beer | undefined>(undefined);
+  readonly randomBeer = signal<Beer | undefined>(undefined);
   readonly beerImage = computed(() =>
     this.randomBeer()?.image
       ? `https://punkapi.online/v3/images/${this.randomBeer()!.image}`
@@ -49,7 +38,6 @@ export class BeerRandomComponent {
 
   handleBeerClick(): void {
     this.loadRandomBeer();
-  } */
+  }
 
-  
 }

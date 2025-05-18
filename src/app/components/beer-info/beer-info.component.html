@@ -35,6 +35,6 @@
         }
       </div>
     </div>
-    @if (infoButton()) {<p-button class="info-btn" (onClick)="handleClick()" [label]="infoButton()"></p-button>}
+    @if (infoButton()) {<p-button class="info-btn" icon="pi pi-refresh" (onClick)="handleClick()" [label]="infoButton()" severity="secondary"></p-button>}
   </div>
 }
