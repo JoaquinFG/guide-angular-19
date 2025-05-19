@@ -1,1 +1,35 @@
-<p>beer-card works!</p>
+@if (beer()) {
+  <div class="beer-card-wrapper">
+    <p-card class="beer-card" [style]="{ width: '100%', height: '100%' }">
+      <ng-template #header>
+        <div class="beer-card-image-wrapper">
+          <img
+            [src]="imageUrl()"
+            alt="Beer Image"
+            class="beer-card-image"
+          />
+        </div>
+      </ng-template>
+
+      <ng-template #title>
+        {{ beer()!.name }}
+      </ng-template>
+
+      <ng-template #subtitle>
+        ID: {{ beer()!.id }}
+      </ng-template>
+
+      <p class="beer-tagline">
+        {{ beer()!.tagline }}
+      </p>
+
+      <ng-template #footer>
+        <p-button
+          label="View Beer"
+          class="w-full mt-2"
+          (onClick)="handleClick()"
+        />
+      </ng-template>
+    </p-card>
+  </div>
+}

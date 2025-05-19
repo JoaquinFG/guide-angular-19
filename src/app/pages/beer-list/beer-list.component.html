@@ -1,1 +1,15 @@
-<p>beer-list works!</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+  @for (beer of beers(); track beer.id) {
+    <app-beer-card
+      [beer]="beer"
+      [imageUrl]="'https://punkapi.online/v3/images/' + beer.image"
+      (onViewClick)="handleViewBeer(beer)"
+    />
+  }
+</div>
+
+@if (selectedBeer()) {
+  <div class="text-center mt-6 text-lg text-primary font-medium">
+    Selected beer: {{ selectedBeer()?.name }}
+  </div>
+}
