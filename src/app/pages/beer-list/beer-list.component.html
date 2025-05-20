@@ -1,6 +1,6 @@
 <div class="beer-list-header">
   <h1>Beer List</h1>
-  <app-toolbar class="toolbar"></app-toolbar>
+  <app-toolbar class="toolbar" (onSearchBeerPage)="loadBeers($event)"></app-toolbar>
 </div>
 @if (beers()) {
   <div class="beer-grid">

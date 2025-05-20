@@ -1,16 +1,37 @@
 <p-toolbar>
-    <ng-template #start>
-        <p-button icon="pi pi-plus" class="mr-2" text severity="secondary" />
-        <p-button icon="pi pi-print" class="mr-2" text severity="secondary" />
-        <p-button icon="pi pi-upload" text severity="secondary" />
-    </ng-template>
-    <ng-template #center>
-        <p-iconfield iconPosition="left">
-            <p-inputicon styleClass="pi pi-search" />
-            <input type="text" pInputText placeholder="Search" />
-        </p-iconfield>
-    </ng-template>
-    <ng-template #end>
-        <p-splitbutton label="Save" [model]="items" />
-    </ng-template>
+  <ng-template #start>
+    <!-- Botón reservado sin acción por ahora -->
+    <p-button icon="pi pi-plus" class="mr-2" text severity="secondary"></p-button>
+
+    <!-- Imprimir -->
+    <p-button icon="pi pi-print" class="mr-2" text severity="secondary" (onClick)="printPage()"></p-button>
+
+    <!-- Descargar -->
+    <p-button icon="pi pi-download" class="mr-2" text severity="secondary" (onClick)="downloadPage()"></p-button>
+  </ng-template>
+
+  <ng-template #center>
+    <!-- Campo numérico solamente -->
+    <p-iconfield iconPosition="left">
+      <p-inputicon styleClass="pi pi-search"></p-inputicon>
+      <input
+        type="number"
+        pInputText
+        placeholder="Nº page"
+        [(ngModel)]="pageNumber"
+        min="1"
+      />
+    </p-iconfield>
+  </ng-template>
+
+  <ng-template #end >
+    <!-- Buscar página -->
+    <div class="end-btn">
+        <p-button
+        icon="pi pi-sync"
+        (onClick)="searchBeerPage(pageNumber)"
+        [disabled]="!pageNumber"
+        ></p-button>
+    </div>
+  </ng-template>
 </p-toolbar>

@@ -1,31 +1,43 @@
-import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Component, output } from '@angular/core';
 import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
-import { SplitButton } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
+import { FormsModule } from '@angular/forms'; // Para ngModel
 
 @Component({
   selector: 'app-toolbar',
-  imports: [Toolbar, ButtonModule, SplitButton, InputTextModule, IconField, InputIcon],
+  standalone: true,
+  imports: [Toolbar, ButtonModule, InputTextModule, IconField, InputIcon, FormsModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-items: MenuItem[] | undefined;
+  pageNumber: number | null = null;
 
-    ngOnInit() {
-        this.items = [
-            {
-                label: 'Update',
-                icon: 'pi pi-refresh'
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-times'
-            }
-        ];
+  readonly onSearchBeerPage = output<number>();
+
+  printPage() {
+    window.print();
+  }
+
+  downloadPage() {
+    const content = document.documentElement.outerHTML;
+    const blob = new Blob([content], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pagina.html';
+    a.click();
+
+    URL.revokeObjectURL(url);
+  }
+
+  searchBeerPage(page: number | null) {
+    if (page !== null && page > 0) {
+      this.onSearchBeerPage.emit(page);
     }
+  }
 }
