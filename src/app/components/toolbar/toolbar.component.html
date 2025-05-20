@@ -26,12 +26,10 @@
 
   <ng-template #end >
     <!-- Buscar página -->
-    <div class="end-btn">
-        <p-button
-        icon="pi pi-sync"
-        (onClick)="searchBeerPage(pageNumber)"
-        [disabled]="!pageNumber"
-        ></p-button>
-    </div>
+      <p-button
+      icon="pi pi-sync"
+      (onClick)="searchBeerPage(pageNumber)"
+      [disabled]="!pageNumber"
+      ></p-button>
   </ng-template>
 </p-toolbar>
