@@ -23,6 +23,7 @@ export class BeerInfoComponent {
     this.isImageLoading.set(false);
   }
   handleClick() {
+    this.isImageLoading.set(true);
     this.onClickBtn.emit();
   }
 

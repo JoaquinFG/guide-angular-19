@@ -1,7 +1,6 @@
 @if (beer()) {
   <div class="beer-detail-container">
-    <h1 class="beer-name">{{ beer()?.name }}</h1>
-
+    <h2 class="beer-name">{{ beer()?.name }}</h2>
     <div class="beer-main-content">
       <div class="beer-description-photo">
         @if (isImageLoading()) {

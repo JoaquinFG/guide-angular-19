@@ -1,18 +1,10 @@
-.beer-card-wrapper {
-  width: 100%;
-  max-width: 24rem;
-  margin: auto;
-  display: flex;
-}
-
 .beer-card {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 30rem;
   justify-content: space-between;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(119, 119, 119, 0.05);
   border-radius: 12px;
 }
 
@@ -38,3 +30,8 @@
   font-size: 0.95rem;
   margin-top: 0.5rem;
 }
+
+::ng-deep .p-button {
+    display: block;
+    width: 100%;
+  }
