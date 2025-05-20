@@ -5,6 +5,7 @@ import { Beer } from '../../models/beer.model';
 import { BeerCardComponent } from '../../components/beer-card/beer-card.component';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-beer-list',
@@ -15,7 +16,9 @@ import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
 })
 export class BeerListComponent {
   private readonly beerService = inject(BeerService);
-  isLoadingBeers = signal(true);
+  private readonly router = inject(Router);
+
+  readonly isLoadingBeers = signal(true);
   readonly beers = signal<Beer[] | undefined>(undefined);
 
   constructor() {
@@ -23,14 +26,24 @@ export class BeerListComponent {
   }
 
   loadBeers(page: number): void {
-    this.beerService.getBeersByPage(page).subscribe((data) => {
-      this.beers.set(data);
-    })
+    this.isLoadingBeers.set(true);
+
+    this.beerService.getBeersByPage(page).subscribe({
+      next: (data) => {
+        this.beers.set(data);
+        this.isLoadingBeers.set(false);
+      },
+      error: (err) => {
+        console.error('Error al cargar las cervezas', err);
+        this.isLoadingBeers.set(false);
+      },
+      complete: () => {
+        console.log('Carga de cervezas finalizada');
+      }
+    });
   }
 
-  readonly selectedBeer = signal<Beer | null>(null);
-  handleViewBeer = (beer: Beer) => {
-    this.selectedBeer.set(beer);
-    console.log('Selected Beer:', beer);
+  handleViewBeer = (id: number): void => {
+    this.router.navigate(['details', id]);
   };
 }

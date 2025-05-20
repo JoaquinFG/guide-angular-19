@@ -15,8 +15,8 @@ export class BeerCardComponent {
   readonly beer = input<Beer | undefined>(undefined);
   readonly imageUrl = input<string | undefined>(undefined);
 
-  readonly onViewClick = output<Beer | undefined>();
+  readonly onViewClick = output<void>();
   handleClick(): void {
-    this.onViewClick.emit(this.beer());
+    this.onViewClick.emit();
   }
 }

@@ -8,7 +8,7 @@
       <app-beer-card
       [beer]="beer"
       [imageUrl]="'https://punkapi.online/v3/images/' + beer.image"
-      (onViewClick)="handleViewBeer(beer)"
+      (onViewClick)="handleViewBeer(beer.id)"
       />
     }
   </div>
