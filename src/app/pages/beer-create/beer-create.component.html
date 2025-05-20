@@ -1,0 +1,78 @@
+<h1>Beer Creator</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+  <div class="field">
+    <label>Nombre</label>
+    <input pInputText formControlName="name" />
+    @if (f.name.touched && f.name.invalid) {
+      <small class="error">El nombre es obligatorio y debe tener al menos 2 caracteres.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>Descripción</label>
+    <textarea pInputTextarea rows="3" formControlName="description"></textarea>
+    @if (f.description.touched && f.description.invalid) {
+      <small class="error">La descripción es obligatoria.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>Tagline</label>
+    <input pInputText formControlName="tagline" />
+    @if (f.tagline.touched && f.tagline.invalid) {
+      <small class="error">El tagline es obligatorio.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>Primera elaboración</label>
+    <input pInputText formControlName="first_brewed" placeholder="MM/YYYY" />
+    @if (f.first_brewed.touched && f.first_brewed.invalid) {
+      <small class="error">Este campo es obligatorio.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>ABV (%)</label>
+    <input type="number" pInputText formControlName="abv" />
+    @if (f.abv.touched && f.abv.invalid) {
+      <small class="error">Debe estar entre 0 y 100.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>IBU</label>
+    <input type="number" pInputText formControlName="ibu" />
+    @if (f.ibu.touched && f.ibu.invalid) {
+      <small class="error">Debe ser mayor o igual a 0.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>pH</label>
+    <input type="number" step="0.1" pInputText formControlName="ph" />
+    @if (f.ph.touched && f.ph.invalid) {
+      <small class="error">Debe estar entre 0 y 14.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>Consejo del cervecero</label>
+    <textarea pInputTextarea rows="2" formControlName="brewers_tips"></textarea>
+    @if (f.brewers_tips.touched && f.brewers_tips.invalid) {
+      <small class="error">Este campo es obligatorio.</small>
+    }
+  </div>
+
+  <div class="field">
+    <label>Maridaje</label>
+    <textarea pInputTextarea rows="2" formControlName="food_pairing"></textarea>
+    @if (f.food_pairing.touched && f.food_pairing.invalid) {
+      <small class="error">Este campo es obligatorio.</small>
+    }
+  </div>
+
+  <button pButton type="submit" label="Guardar cerveza" ></button>
+</form>

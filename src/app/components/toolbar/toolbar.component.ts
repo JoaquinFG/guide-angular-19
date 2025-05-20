@@ -1,10 +1,11 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { FormsModule } from '@angular/forms'; // Para ngModel
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,9 +15,10 @@ import { FormsModule } from '@angular/forms'; // Para ngModel
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  pageNumber: number | null = null;
-
+  private readonly router = inject(Router);
   readonly onSearchBeerPage = output<number>();
+  
+  pageNumber: number | null = null;
 
   printPage() {
     window.print();
@@ -39,5 +41,9 @@ export class ToolbarComponent {
     if (page !== null && page > 0) {
       this.onSearchBeerPage.emit(page);
     }
+  }
+
+  createBeer() {
+    this.router.navigate(['create'])
   }
 }

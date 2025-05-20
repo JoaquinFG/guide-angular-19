@@ -1,7 +1,7 @@
 <p-toolbar>
   <ng-template #start>
     <!-- Botón reservado sin acción por ahora -->
-    <p-button icon="pi pi-plus" class="mr-2" text severity="secondary"></p-button>
+    <p-button icon="pi pi-plus" class="mr-2" text severity="secondary" (onClick)="createBeer()"></p-button>
 
     <!-- Imprimir -->
     <p-button icon="pi pi-print" class="mr-2" text severity="secondary" (onClick)="printPage()"></p-button>
