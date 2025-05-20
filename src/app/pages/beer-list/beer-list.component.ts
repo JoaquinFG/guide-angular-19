@@ -4,11 +4,12 @@ import { BeerService } from '../../services/beer.service';
 import { Beer } from '../../models/beer.model';
 import { BeerCardComponent } from '../../components/beer-card/beer-card.component';
 import { ProgressSpinner } from 'primeng/progressspinner';
+import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-beer-list',
   standalone: true,
-  imports: [CommonModule, BeerCardComponent, ProgressSpinner],
+  imports: [CommonModule, BeerCardComponent, ProgressSpinner, ToolbarComponent],
   templateUrl: './beer-list.component.html',
   styleUrl: './beer-list.component.scss',
 })
